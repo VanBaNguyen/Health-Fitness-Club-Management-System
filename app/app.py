@@ -89,10 +89,11 @@ def admin_menu():
                 "\t10 - View Members\n"
                 "\t11 - View Trainers\n"
                 "\t12 - View Trainer Availability\n"
+                "\t13 - Delete Bill\n"
                 "Enter choice: "
             )
             choice = int(input(prompt))
-            if choice not in range(0, 13):
+            if choice not in range(0, 14):
                 raise ValueError
         except (ValueError, EOFError):
             print("Invalid input, try again.")
@@ -283,7 +284,12 @@ def admin_menu():
                 bill = db.query(Bill).filter(Bill.id == bill_id).first()
                 if bill is None:
                     raise ValueError("Bill not found.")
-                payment = Payment.record(db=db, bill=bill)
+                
+                print(f"Amount due: {bill.amount_due:.2f}")
+                amount_input = input("Payment amount: ").strip()
+                amount = float(amount_input)
+                
+                payment = Payment.record(db=db, bill=bill, amount=amount)
                 print(
                     f"\nPayment recorded. Amount: {payment.amount:.2f}, "
                     f"New amount due: {bill.amount_due:.2f}"
@@ -319,7 +325,6 @@ def admin_menu():
                         for payment in bill.payments:
                             print(
                                 f"    - {payment.created_at}: {payment.amount:.2f} "
-                                f"(Transaction #{payment.transaction_code})"
                             )
             except ValueError as e:
                 print(f"\nError: {e}")
@@ -365,6 +370,22 @@ def admin_menu():
                     print(
                         f"  Trainer: {avail.trainer.name} | {get_day_name(avail.day_of_week)}: {avail.start_time} - {avail.end_time}"
                     )
+
+        elif choice == 13:
+            try:
+                bill_id = int(input("Bill ID to delete: ").strip())
+                bill = db.query(Bill).filter(Bill.id == bill_id).first()
+                if bill is None:
+                    raise ValueError("Bill not found.")
+                
+                db.delete(bill)
+                db.commit()
+                print(f"\nBill {bill_id} deleted successfully.")
+            except ValueError as e:
+                print(f"\nError: {e}")
+            except Exception as e:
+                db.rollback()
+                print(f"\nUnexpected error: {e}")
 
 def member_menu():
     db = get_db()

@@ -76,26 +76,24 @@ class Payment(Base):
     amount = Column(Float, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     status = Column(String, nullable=False, default="pending")
-    transaction_code = Column(Integer, nullable=False)
 
     bill = relationship("Bill", back_populates="payments")
 
     @classmethod
-    def record(cls, db: "OrmSession", bill: Bill) -> "Payment":
+    def record(cls, db: "OrmSession", bill: Bill, amount: float) -> "Payment":
         if bill.amount_due <= 0:
             raise ValueError("Bill is already fully paid.")
+        
+        if amount <= 0:
+            raise ValueError("Payment amount must be positive.")
 
-        remaining_cents = int(round(bill.amount_due * 100))
-        pay_cents = randint(1, remaining_cents)
-        amount = pay_cents / 100.0
-
-        transaction_code = randint(100000, 999999)
+        if amount > bill.amount_due:
+             raise ValueError(f"Payment amount ({amount}) exceeds amount due ({bill.amount_due}).")
 
         payment = cls(
             bill_id=bill.id,
             amount=amount,
             status="completed",
-            transaction_code=transaction_code,
         )
 
         db.add(payment)
