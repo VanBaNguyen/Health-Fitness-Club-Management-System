@@ -1,0 +1,71 @@
+objective: managing the daily activities and operations of a modern fitness center
+
+individual personal training sessions and group fitness classes.
+they support scheduling, capacity management and a trainer coordation
+
+3 levels of users:
+members, trainers and admins
+
+postgresql 
+
+
+
+
+
+
+
+fix member log health metric date format
+maybe change all dates to only date with no hour/minute
+
+
+member:
+should be able to register by providing name, DOB, gender and contact details
+should be able to update the given info ^^^^^^^^
+should be able to store current health metrics such as height, weight, heart rate
+should be able to store body weight and body fat percentage goals
+these 2 previous stored dates should be in a list and not overwritten
+dashboard that has most recent health checkup (stored data^^), progress toward fitness goals, group class sessions and booked PT sessions
+ability to schedule, reschedule and cancel PTs with trainers (provided trainer has availability)
+group class registration, with class capacity and schedule constraints
+prevent overlapping bookings, ensure group capacity not exceeded, and make sure trainer is avialable
+
+trainers:
+set availablity as recurring weekly slots,
+view upcomming sessions
+
+
+
+
+
+
+
+
+
+
+2.1 Member Functions
+Members interact with the system to manage personal data, monitor progress, and schedule
+services. At least 4 operations must be implemented.
+● User Registration: Create a new member with unique email and basic profile info.
+● Profile Management: Update personal details, fitness goals (e.g., weight target), and input new
+health metrics (e.g., weight, heart rate).
+● Health History: Log multiple metric entries; do not overwrite. Must support time-stamped
+entries.
+● Dashboard: Show latest health stats, active goals, past class count, upcoming sessions.
+● PT Session Scheduling: Book or reschedule training with a trainer, validating availability and
+room conflicts.
+● Group Class Registration: Register for scheduled classes if capacity permits
+
+2.2 Trainer Functions
+Trainers manage their working hours and access limited member data. At least 2 operations must
+be implemented.
+● Set Availability: Define time windows when available for sessions or classes. Prevent overlap.
+● Schedule View: See assigned PT sessions and classes.
+● Member Lookup: Search by name (case-insensitive) and view current goal and last metric. No
+editing rights.
+
+2.3 Administrative Staff Functions
+Admins coordinate resources and simulate payments. At least 2 operations must be implemented.
+● Room Booking: Assign rooms for sessions or classes. Prevent double-booking.
+● Equipment Maintenance: Log issues, track repair status, associate with room/equipment.
+● Class Management: Define new classes, assign trainers/rooms/time, update schedules.
+● Billing & Payment: Generate bills, add line items, record payments. Simulate status updates.
