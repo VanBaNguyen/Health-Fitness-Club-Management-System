@@ -77,19 +77,23 @@ def admin_menu():
             prompt = (
                 "\n=== Admin Menu ===\n"
                 "\t0 - Exit\n"
+                "\n\t-- Room Management --\n"
                 "\t1 - Create Room\n"
                 "\t2 - List Rooms\n"
+                "\n\t-- Class Management --\n"
                 "\t3 - Schedule Fitness Class\n"
                 "\t4 - Update Fitness Class\n"
                 "\t5 - List Fitness Classes\n"
+                "\n\t-- Billing & Payments --\n"
                 "\t6 - Generate Bill for Member\n"
                 "\t7 - Add Bill Line Item\n"
                 "\t8 - Record Payment\n"
                 "\t9 - View Bills\n"
+                "\t13 - Delete Bill\n"
+                "\n\t-- User/Staff Management --\n"
                 "\t10 - View Members\n"
                 "\t11 - View Trainers\n"
                 "\t12 - View Trainer Availability\n"
-                "\t13 - Delete Bill\n"
                 "Enter choice: "
             )
             choice = int(input(prompt))
@@ -324,7 +328,7 @@ def admin_menu():
                         print("  Payments:")
                         for payment in bill.payments:
                             print(
-                                f"    - {payment.created_at}: {payment.amount:.2f} "
+                                f"    - {payment.created_at.strftime('%Y-%m-%d %H:%M')}: ${payment.amount:.2f}"
                             )
             except ValueError as e:
                 print(f"\nError: {e}")
@@ -626,10 +630,13 @@ def logged_in_trainer_menu(db, trainer: Trainer):
             prompt = (
                 f"\n=== Trainer Dashboard - {trainer.name} ===\n"
                 "\t0 - Logout\n"
+                "\n\t-- Schedule --\n"
                 "\t1 - View Schedule\n"
+                "\n\t-- Availability --\n"
                 "\t2 - Set Availability\n"
-                "\t3 - Lookup Member\n"
                 "\t4 - View Availability\n"
+                "\n\t-- Members --\n"
+                "\t3 - Lookup Member\n"
                 "Enter choice: "
             )
             choice = int(input(prompt))

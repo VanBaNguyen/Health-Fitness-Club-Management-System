@@ -76,6 +76,7 @@ class Payment(Base):
     amount = Column(Float, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
     status = Column(String, nullable=False, default="pending")
+    transaction_code = Column(Integer, nullable=False)
 
     bill = relationship("Bill", back_populates="payments")
 
@@ -94,6 +95,7 @@ class Payment(Base):
             bill_id=bill.id,
             amount=amount,
             status="completed",
+            transaction_code=randint(1000, 9999)
         )
 
         db.add(payment)
