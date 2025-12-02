@@ -51,6 +51,7 @@ Follow the on-screen CLI prompts to navigate between user roles (Admin, Trainer,
   │   └── ERD.pdf           # ER Diagram and schema
   ├── health_club.db        # SQLite database (generated on first run)
   └── requirements.txt      # Python dependencies
+```
 
 ## Database Design
 
