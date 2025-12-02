@@ -5,7 +5,7 @@
 **Group Members:** Van Nguyen (101331941) and Siddig Ahmed (101332539)
 
 ## Video Demonstration
-[Link to Video Demonstration](ADD_LINK_HERE)
+[Link to Video Demonstration](https://youtu.be/YIyfskQzlZM)
 
 ## Project Description
 This project is a comprehensive Health and Fitness Club Management System designed to manage the daily operations of a fitness center. It supports three distinct user roles: **Members**, **Trainers**, and **Administrative Staff**. The system handles member registrations, profile management, class scheduling, room bookings, trainer availability, and billing/payment simulations.
