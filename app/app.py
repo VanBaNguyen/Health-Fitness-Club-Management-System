@@ -621,7 +621,6 @@ def trainer_menu():
             except Exception as e:
                 print(f"\n✗ Error: {e}")
 
-
 def logged_in_trainer_menu(db, trainer: Trainer):
     """Menu for logged-in trainer operations."""
 
@@ -634,9 +633,9 @@ def logged_in_trainer_menu(db, trainer: Trainer):
                 "\t1 - View Schedule\n"
                 "\n\t-- Availability --\n"
                 "\t2 - Set Availability\n"
-                "\t4 - View Availability\n"
+                "\t3 - View Availability\n"
                 "\n\t-- Members --\n"
-                "\t3 - Lookup Member\n"
+                "\t4 - Lookup Member\n"
                 "Enter choice: "
             )
             choice = int(input(prompt))
@@ -704,7 +703,7 @@ def logged_in_trainer_menu(db, trainer: Trainer):
                 except Exception as e:
                     print(f"Unexpected error: {e}")
 
-        elif choice == 3:
+        elif choice == 4:
             try:
                 print("\n=== Member Lookup ===")
                 name = input("Enter member name: ").strip()
@@ -724,7 +723,7 @@ def logged_in_trainer_menu(db, trainer: Trainer):
             except Exception as e:
                 print(f"\nUnexpected error: {e}")
 
-        elif choice == 4:
+        elif choice == 3:
             try:
                 print("\n=== My Availability ===")
                 availabilities = trainer.get_availability(db=db)
@@ -774,7 +773,6 @@ def main():
             member_menu()
         else:
             print("Unknown role, try again.")
-
 
 if __name__ == "__main__":
     main()
