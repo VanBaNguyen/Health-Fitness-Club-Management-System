@@ -69,7 +69,6 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/_build/
 
 # PyBuilder
 .pybuilder/
@@ -205,5 +204,4 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
-docs/
 txt.txt

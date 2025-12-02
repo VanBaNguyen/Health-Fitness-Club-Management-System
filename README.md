@@ -47,11 +47,10 @@ Follow the on-screen CLI prompts to navigate between user roles (Admin, Trainer,
   │   ├── enrollment.py     # Class enrollments
   │   ├── billing.py        # Billing and payments
   │   └── ...
+  ├── docs/                 # Documents
+  │   └── ERD.pdf           # ER Diagram and schema
   ├── health_club.db        # SQLite database (generated on first run)
-  ├── requirements.txt      # Python dependencies
-  ├── ER diagram.png        # ER Model Diagram
-  └── Schema.png            # Relational Schema Diagram
-```
+  └── requirements.txt      # Python dependencies
 
 ## Database Design
 
