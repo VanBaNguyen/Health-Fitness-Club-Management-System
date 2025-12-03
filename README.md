@@ -167,3 +167,6 @@ The program is a text-based interface simulates the user experience for all role
 We're assuming that "admins" will all have the same abilities and not necessarily be different people such that they all need individual ids/names. Our interpretation of the admin role is that all admins will use 1 "admin panel" interface for their role, while trainers and members are individually treated.
 
 It'd also likely be best if members were created, then trainers, then admin functionalities are run, in that order for the easiest way of viewing all the functionality of the program properly.
+
+  ### Schema Normalization & Expansion
+  During the schema conversion process, we introduced associative entities (like `Enrollments`) and decomposed complex attributes (splitting `Bills` and `BillLineItems`) to properly handle cardinality and ensure data integrity. This normalization process expanded our final table count beyond the initial conceptual entities, resulting in a more optimized and flexible database structure that is better reflected in the codebase than a simple one-to-one mapping of the initial ER sketch.
