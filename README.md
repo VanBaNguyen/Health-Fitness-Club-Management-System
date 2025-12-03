@@ -58,6 +58,81 @@ Follow the on-screen CLI prompts to navigate between user roles (Admin, Trainer,
 ### ER Model
 The ER model defines the entities (Member, Trainer, Room, Class, Bill, etc.) and their relationships. See `ER diagram.png` in the root directory for the visual representation.
 
+### Entity Classifications
+
+- **Trainer**: Regular Entity (Has its own Primary Key `id`)
+- **Member**: Regular Entity (Has its own Primary Key `id`)
+- **Rooms**: Regular Entity (Has its own Primary Key `id`)
+- **Classes**: Regular Entity (Has its own Primary Key `id`)
+- **Bills**: Regular Entity (Has its own Primary Key `id`)
+- **Payments**: Regular Entity (Has its own Primary Key `id`)
+- **Bill Line Items**: Regular Entity (Has its own Primary Key `id`, although conceptually it is often a weak entity, the schema implements it with a surrogate key)
+- **Trainer Availability**: Regular Entity (Has its own Primary Key `id`)
+- **Enrollments**: Weak Entity (Does not have its own surrogate Primary Key; its Primary Key is a composite of Foreign Keys `class_id` and `member_id`)
+
+### Entity Attribute Details
+
+#### Member (Regular Entity)
+- **id**: Simple, Single-valued [Primary Key]
+- **name**: Simple, Single-valued
+- **email**: Simple, Single-valued
+- **age**: Simple, Single-valued
+- **gender**: Simple, Single-valued
+- **weight_goal**: Simple, Single-valued
+- **current_weight**: Simple, Single-valued
+
+#### Trainer (Regular Entity)
+- **id**: Simple, Single-valued [Primary Key]
+- **name**: Simple, Single-valued
+- **email**: Simple, Single-valued
+
+#### Room (Regular Entity)
+- **id**: Simple, Single-valued [Primary Key]
+- **name**: Simple, Single-valued
+- **capacity**: Simple, Single-valued
+
+#### Class (Regular Entity)
+- **id**: Simple, Single-valued [Primary Key]
+- **name**: Simple, Single-valued
+- **day_of_week**: Simple, Single-valued
+- **start_time**: Simple, Single-valued
+- **end_time**: Simple, Single-valued
+- **capacity**: Simple, Single-valued
+- **trainer_id**: Simple, Single-valued [Foreign Key]
+- **room_id**: Simple, Single-valued [Foreign Key]
+
+#### TrainerAvailability (Regular Entity)
+- **id**: Simple, Single-valued [Primary Key]
+- **day_of_week**: Simple, Single-valued
+- **start_time**: Simple, Single-valued
+- **end_time**: Simple, Single-valued
+- **trainer_id**: Simple, Single-valued [Foreign Key]
+
+#### Bill (Regular Entity)
+- **id**: Simple, Single-valued [Primary Key]
+- **status**: Simple, Single-valued
+- **created_at**: Simple, Single-valued
+- **member_id**: Simple, Single-valued [Foreign Key]
+
+#### BillLineItem (Regular Entity)
+- **id**: Simple, Single-valued [Primary Key]
+- **description**: Simple, Single-valued
+- **amount**: Simple, Single-valued
+- **bill_id**: Simple, Single-valued [Foreign Key]
+
+#### Payment (Regular Entity)
+- **id**: Simple, Single-valued [Primary Key]
+- **amount**: Simple, Single-valued
+- **created_at**: Simple, Single-valued
+- **status**: Simple, Single-valued
+- **transaction_code**: Simple, Single-valued
+- **bill_id**: Simple, Single-valued [Foreign Key]
+
+#### Enrollment (Weak Entity)
+- **member_id**: Simple, Single-valued [Primary Key (Composite), Foreign Key]
+- **class_id**: Simple, Single-valued [Primary Key (Composite), Foreign Key]
+- **registration_date**: Simple, Single-valued
+
 ## ORM Mapping (bonus)
 We used SQLAlchemy to translate our ER diagram into code. The entities (like Member, Trainer, and Room) are defined as Python classes in the `models/` folder, inheriting from a shared `Base` class. We mapped attributes directly to database columns using `Column()` and handled relationships with `ForeignKey()` for the database constraints and `relationship()` for easy object navigation in Python.
 
