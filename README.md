@@ -10,18 +10,19 @@
 ## Project Description
 This project is a comprehensive Health and Fitness Club Management System designed to manage the daily operations of a fitness center. It supports three distinct user roles: **Members**, **Trainers**, and **Administrative Staff**. The system handles member registrations, profile management, class scheduling, room bookings, trainer availability, and billing/payment simulations.
 
-The application is built using Python and relies on **SQLAlchemy** as an Object-Relational Mapper (ORM) to interact with a SQLite relational database (`health_club.db`). 
+The application is built with Python + **SQLAlchemy** as an Object-Relational Mapper (ORM) to interact with a SQLite relational database that would spawn in (`health_club.db`). 
 
 ## How to Run the Project
 
 ### Prerequisites
-- Python 3.x installed
+We used Python 3.12.3 :))
 
 ### Installation
 1. Clone the repository or extract the project files.
 2. Navigate to the project root directory.
 3. Install the required dependencies:
    ```bash
+   # we recommend making a venv first!
    pip install -r requirements.txt
    ```
 
@@ -138,7 +139,7 @@ We used SQLAlchemy to translate our ER diagram into code. The entities (like Mem
 
 For the user hierarchy, we went with Single Table Inheritance. The base `User` class handles the shared logic, while `Member` and `Trainer` subclasses handle specific roles, all stored within the `users` table using a `user_type` discriminator.
 
-## Required Application Operations
+## Required Application Operations (10, as per for a team of 2)
 
 ### Member Functions
 - **User Registration:** Create a new member profile.
@@ -169,4 +170,4 @@ We're assuming that "admins" will all have the same abilities and not necessaril
 It'd also likely be best if members were created, then trainers, then admin functionalities are run, in that order for the easiest way of viewing all the functionality of the program properly.
 
 ### Schema Normalization & Expansion
-During the schema conversion process, we introduced associative entities (like `Enrollments`) and decomposed complex attributes (splitting `Bills` and `BillLineItems`) to properly handle cardinality and ensure data integrity. This normalization process expanded our final table count beyond the initial conceptual entities, resulting in a more optimized and flexible database structure that is better reflected in the codebase than a simple one-to-one mapping of the initial ER sketch.
+During the schema conversion process, we introduced associative entities (like `Enrollments`) and decomposed complex attributes (splitting `Bills` and `BillLineItems`; declared in code via `billing.py`) to properly handle cardinality and ensure data integrity. This normalization process expanded our final table count beyond the initial conceptual entities, resulting in a more optimized project that is better reflected in the codebase than a simple one-to-one mapping of the initial ER sketch.
