@@ -56,7 +56,7 @@ Follow the on-screen CLI prompts to navigate between user roles (Admin, Trainer,
 ## Database Design
 
 ### ER Model
-The ER model defines the entities (Member, Trainer, Room, Class, Bill, etc.) and their relationships. See `ER diagram.png` in the root directory for the visual representation.
+The ER model defines the entities (Member, Trainer, Room, Class, Bill, etc.) and their relationships. See `docs/ERD.pdf` for the visual representation.
 
 ### Entity Classifications
 
